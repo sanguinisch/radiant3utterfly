@@ -1,0 +1,98 @@
+<style>
+    body {
+        background: black;
+    }
+
+    .svg-rapper {
+        height: 280px;
+        margin: 0 auto;
+        position: relative;
+        width: 280px;
+    }
+
+    .butterfly {
+        fill: transparent;
+        stroke-dasharray: 3000;
+        stroke-width: 1px;
+        stroke: transparent;
+        stroke-dashoffset: -2000;
+    }
+
+    .circle {
+        fill: transparent;
+        stroke-dasharray: 1000;
+        stroke-width: 3px;
+        stroke: transparent;
+        stroke-dashoffset: 1200;
+    }
+
+    @keyframes draw1 {
+        to {
+            stroke-dashoffset: -5000;
+            stroke: #19f6e8;
+        }
+    }
+    @keyframes draw2 {
+        to {
+            stroke-dashoffset: 0;
+            stroke: #19f6e8;
+        }
+    }
+
+    @keyframes draw3 {
+        100% {
+            fill: transparent;
+        }
+    }
+
+
+</style>
+
+
+<p id="time"></p>
+<div class="svg-rapper" onclick="change()" ondblclick="reverse()" style="border-style:solid; border-width:thin;">
+    <svg class="sv" height="280" width="280" xmlns="http://www.w3.org/2000/svg">
+        <circle class="circle" cx="140" cy="140" r="120"  transform="rotate(-135 140 140)"/>
+        <path class="butterfly" d="M140 20 L 140 260 L 20 140 L 260 140 L55.147 224.852 L224.852 55.147 L224.852 224.852 L55.147 55.147" />
+
+    </svg>
+    
+</div>
+
+
+<script>
+    function change() {
+        var t = Date(Date.now());
+        document.getElementById("time").innerHTML = String(t);
+        setInterval(rep, 8000);
+        console.log(Date.now() % 8000);
+        
+    }
+
+    function rep() {                        
+        document.getElementsByClassName("butterfly")[0].style.animation = "5s draw1 linear forwards";
+        setTimeout(function () { document.getElementsByClassName("circle")[0].style.animation = "2s draw2 linear forwards"; }, 4000);
+        setTimeout(function () { document.getElementsByClassName("body")[0].style.animation = "3s draw3"; }, 7000);
+        var t = Date(Date.now());
+        document.getElementById("time").innerHTML = String(t);
+        setTimeout(reverse, 7500);
+    }
+
+    function reverse() {
+        document.getElementsByClassName("svg-rapper")[0].style.background = "transparent";
+        document.getElementsByClassName("butterfly")[0].style.animation = "none";
+        document.getElementsByClassName("circle")[0].style.animation = "none";
+    }
+
+    var d = new Date();
+
+    if (Date.now() % 8000 == 0) {
+        while (true) {
+            rep();
+        }
+    } else {
+        setTimeout(change, 8000-(Date.now() % 8000));
+        console.log(Date.now()%8000);
+    }
+    
+</script>

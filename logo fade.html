@@ -1,0 +1,111 @@
+﻿<style>
+    body {
+        height: 100%;
+        width: 100%;
+        background: black;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        border: 0;
+        outline: 0;
+    }
+
+    .sv{
+        height: 100%;
+        width: 100%;
+        background: transparent;
+    }
+
+    .butterfly {
+        fill: transparent;
+        stroke-dasharray: 3000;
+        stroke-width: 1px;
+        stroke: transparent;
+        stroke-dashoffset: -2000;
+    }
+
+    .circle {
+        fill: transparent;
+        stroke-dasharray: 1000;
+        stroke-width: 3px;
+        stroke: transparent;
+        stroke-dashoffset: 1200;
+    }
+
+    .lightCircle{
+        fill:#19f6e8;
+        transform-origin: 50% 50%;
+        transform: scale(0);
+        
+    }
+
+    .radiant3{
+        border-radius: 5px;
+        margin:auto;
+    }
+
+    @keyframes Keyf_butterflyLine {
+        to {
+            stroke-dashoffset: -5000;
+            stroke: #19f6e8;
+        }
+    }
+
+    @keyframes Keyf_circleLine {
+        to {
+            stroke-dashoffset: 0;
+            stroke: #19f6e8;
+        }
+    }
+
+    @keyframes Keyf_scale {
+        to {
+            transform: scale(15);
+        }
+    }
+
+    @keyframes Keyf_fade {
+        to{
+            opacity: 0%;
+        }
+    }
+
+    @keyframes Keyf_enlight {
+        to{
+            fill: white;
+            transform: scale(1);
+        }
+    }
+</style>
+
+<body>
+    <span class="span">
+        <svg class="sv" width="768" height="432" xmlns="http://www.w3.org/2000/svg">
+            <circle class="lightCircle" cx="384" cy="216" r="480"/>
+            <g class="radiant3" transform="translate(244 76)">
+                <circle class="circle" cx="140" cy="140" r="120" transform="rotate(-135 140 140)" />
+                <path class="butterfly"
+                    d="M140 20 L 140 260 L 20 140 L 260 140 L55.147 224.852 L224.852 55.147 L224.852 224.852 L54.35 54.35"/>
+            </g>
+        </svg>
+    </span>
+</body>
+
+
+<script>
+
+
+    function rep() {
+        document.getElementsByClassName("butterfly")[0].style.animation = "5s Keyf_butterflyLine linear forwards";
+        setTimeout(function () { document.getElementsByClassName("lightCircle")[0].style.animation = "2s Keyf_enlight ease forwards"; }, 5650);
+        setTimeout(function () { document.getElementsByClassName("circle")[0].style.animation = "2s Keyf_circleLine linear forwards"; }, 4000);
+        
+        setTimeout(function () { document.getElementsByClassName("radiant3")[0].style.animation = "1.5s Keyf_fade linear forwards"; }, 5650);
+        setTimeout(function () { document.getElementsByClassName("sv")[0].style.animation = "2s Keyf_scale ease forwards"; }, 6000);
+        
+    }
+
+    rep();
+
+</script>
